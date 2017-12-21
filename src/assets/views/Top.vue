@@ -1,15 +1,15 @@
 <!-- 推荐 -->
 <template>
   <div>
-    <text>推荐</text>
+  	<text>推荐</text>
   </div>
 </template>
- 
+
 <style scoped>
-     
+	
 </style>
- 
-<script> 
+
+<script>  
   export default {
     data () {
       return {

@@ -5,7 +5,7 @@
     <tab-bar @tabTo="onTabTo"></tab-bar>
   </div>
 </template>
- 
+
 <style>
   body{
     margin: 0;
@@ -14,7 +14,7 @@
     color:#333;
   }
 </style>
- 
+
 <style scoped>
   .app-wrapper{
     background-color: #f4f4f4;
@@ -27,15 +27,15 @@
     bottom: 0;
   }
 </style>
- 
+
 <script>
   // 弹窗
   var modal = weex.requireModule('modal');
   // 工具类
   import util from './assets/util';
   // 底部选项卡组件
-  import tabBar from './assets/components/TabBar.vue';
-   
+  import tabBar from './assets/components/tabBar.vue';
+  
   export default {
     data () {
       return {

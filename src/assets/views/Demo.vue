@@ -1,15 +1,15 @@
 <!-- 分类 -->
 <template>
   <div>
-    <text>分类</text>
+  	<text>分类</text>
   </div>
 </template>
- 
+
 <style scoped>
-     
+	
 </style>
- 
-<script> 
+
+<script>  
   export default {
     data () {
       return {

@@ -2,28 +2,28 @@
 <template>
   <div class="wrapper">
     <div class="bar-item" @click="tabTo('home')">
-      <text class="bar-ic iconfont" :style="testCS"></text>
+      <text class="bar-ic iconfont" :style="testCS">&#xe65c;</text>
       <text class="bar-txt">首页</text>
     </div>
     <div class="bar-item" @click="tabTo('top')">
-      <text class="bar-ic iconfont"></text>
+      <text class="bar-ic iconfont">&#xe608;</text>
       <text class="bar-txt">推荐</text>
     </div>
     <div class="bar-item act" @click="tabTo('demo')">
-      <text class="bar-ic iconfont"></text>
+      <text class="bar-ic iconfont">&#xe7f9;</text>
       <text class="bar-txt">分类</text>
     </div>
     <div class="bar-item" @click="tabTo('all')">
-      <text class="bar-ic iconfont"></text>
+      <text class="bar-ic iconfont">&#xe625;</text>
       <text class="bar-txt">PHP教程</text>
     </div>
     <div class="bar-item" @click="tabTo('my')">
-      <text class="bar-ic iconfont"></text>
+      <text class="bar-ic iconfont">&#xe606;</text>
       <text class="bar-txt">关于</text>
     </div>
   </div>
 </template>
- 
+
 <style scoped>
   .iconfont {
     font-family:iconfont;
@@ -59,11 +59,11 @@
     padding-top: 1px;
   }
 </style>
- 
+
 <script>
   // 弹窗
   var modal = weex.requireModule('modal');
- 
+
   export default {
     computed:{
       testCS:function () {

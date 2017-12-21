@@ -46,7 +46,7 @@ let utilFunc = {
         } else {
             base = nativeBase + (!!path? path+'/':'');
         }
- 
+
         const newUrl = base + jsFile;
         return newUrl;
     },
@@ -63,5 +63,5 @@ let utilFunc = {
         return null;
     }
 };
- 
+
 export default utilFunc;

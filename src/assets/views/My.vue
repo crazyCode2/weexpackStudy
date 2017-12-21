@@ -1,15 +1,15 @@
 <!-- 关于 -->
 <template>
   <div>
-    <text>关于</text>
+  	<text>关于</text>
   </div>
 </template>
- 
+
 <style scoped>
-     
+	
 </style>
- 
-<script> 
+
+<script>  
   export default {
     data () {
       return {

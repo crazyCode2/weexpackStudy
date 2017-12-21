@@ -1,15 +1,15 @@
 <!-- PHP教程 -->
 <template>
   <div>
-    <text>PHP教程</text>
+  	<text>PHP教程</text>
   </div>
 </template>
- 
+
 <style scoped>
-     
+	
 </style>
- 
-<script> 
+
+<script>  
   export default {
     data () {
       return {
