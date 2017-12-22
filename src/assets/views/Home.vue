@@ -78,7 +78,7 @@
   // 身份验证
   import jwtdecode from 'jwt-simple';
   // 引入 请求失败页面
-  import NetWork from './network.vue';
+  import NetWork from './Network.vue';
 
   export default {
     components: {

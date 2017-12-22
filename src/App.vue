@@ -34,7 +34,7 @@
   // 工具类
   import util from './assets/util';
   // 底部选项卡组件
-  import tabBar from './assets/components/tabBar.vue';
+  import tabBar from './assets/components/TabBar.vue';
   
   export default {
     data () {

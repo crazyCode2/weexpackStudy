@@ -3,19 +3,19 @@
  */
 import Router from 'vue-router'
 // 首页
-import ViewHome from './assets/views/home.vue'
+import ViewHome from './assets/views/Home.vue'
 // 关于
-import ViewMy from './assets/views/my.vue'
+import ViewMy from './assets/views/My.vue'
 // PHP教程
-import ViewAll from './assets/views/all.vue'
+import ViewAll from './assets/views/All.vue'
 // 分类
-import Viewdemo from './assets/views/demo.vue'
+import ViewDemo from './assets/views/Demo.vue'
 // 推荐
-import ViewTopbvive from './assets/views/top.vue'
+import ViewTopbvive from './assets/views/Top.vue'
 // 公用webview
-import Viewwebvive from './page/webview.vue'
+import ViewWebvive from './page/Webview.vue'
 // 网络异常页
-import ViewNetwork from './assets/views/network.vue'
+import ViewNetwork from './assets/views/Network.vue'
 
 Vue.use(Router)
 
@@ -41,7 +41,7 @@ export default new Router({
         // 分类
         {
         	path: '/demo',
-        	component: Viewdemo
+        	component: ViewDemo
         },
         // PHP教程
         {
@@ -56,7 +56,7 @@ export default new Router({
         // 公用 webview
         {
             path: '/webview',
-            component: Viewwebvive
+            component: ViewWebvive
         },
         // 网络异常页
         {
