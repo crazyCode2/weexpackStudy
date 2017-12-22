@@ -77,6 +77,7 @@
   // 页面加载失败类型
   import TYPES from './network';
   // 功能函数
+  // import { NetWorkUtils } from 'weex-ui';
   import NetWorkUtils from '../../../packages/utils';
   // 弹窗
   const modal = weex.requireModule('modal');

@@ -4,8 +4,8 @@
     <!-- 标题栏 -->
   	<wxc-minibar
       title="首页"
-      right-button="N"
-      left-button="N"
+      right-button=""
+      left-button=""
       background-color="#F2F3F4"
       text-color="#333333"></wxc-minibar>
     <!-- 滚动视图 scroller需要用一个div将内容包含 -->
@@ -70,7 +70,7 @@
   // 引入 轮播图组件
   import Slider from '../components/Slider.vue';
   // 引入 UI组件
-  import { WxcMinibar, WxcTabPage, WxcPanItem, WxcCell, Utils } from '../../../index';
+  import { WxcMinibar, WxcTabPage, WxcPanItem, WxcCell, Utils } from 'weex-ui';
   // 配置文件
   import Config from './config';
   // 数据请求组件
