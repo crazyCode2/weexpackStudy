@@ -13,9 +13,9 @@ import ViewDemo from './assets/views/Demo.vue'
 // 推荐
 import ViewTopbvive from './assets/views/Top.vue'
 // 公用webview
-import ViewWebvive from './page/Webview.vue'
+import ViewWebvive from './page/webview.vue'
 // 网络异常页
-import ViewNetwork from './assets/views/Network.vue'
+import ViewNetwork from './assets/views/network.vue'
 
 Vue.use(Router)
 
