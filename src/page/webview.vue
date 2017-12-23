@@ -61,13 +61,13 @@
     methods: {
       // 返回
       back (event) {
-        // webview.goBack(this.$refs.wv);
-        window.history.go(-1)
+        webview.goBack(this.$refs.wv);
+        // window.history.go(-1)
       },
       // 刷新
       reload (event) {
-        // webview.reload(this.$refs.wv);
-        window.location.reload();
+        webview.reload(this.$refs.wv);
+        // window.location.reload();
       },
       error (event) {
         console.log('error', event)
@@ -108,12 +108,13 @@
   .iconfont {
     font-family:iconfont;
   }
+
   .toolbar{
     position: fixed;
     top: 0;
     left: 0;right: 0;
     height: 114px;
-    padding-top: 22px;
+    padding-top: 44px;
     background-color: #fafafa;
     opacity: .99;
     z-index: 101;
@@ -151,6 +152,7 @@
     font-size: 40px;
     width: 70px;
     color:#666;
+
     text-align: center;
   }
   .webview-box {
@@ -167,5 +169,6 @@
     right:0;
     bottom: 0;
   }
+
 </style>
 

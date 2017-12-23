@@ -77,8 +77,7 @@
   // 页面加载失败类型
   import TYPES from './network';
   // 功能函数
-  // import { NetWorkUtils } from 'weex-ui';
-  import NetWorkUtils from '../../../packages/utils';
+  import { Utils } from 'weex-ui';
   // 弹窗
   const modal = weex.requireModule('modal');
 
@@ -105,7 +104,7 @@
     computed: {
       resultType () {
         const { type, customSet } = this;
-        const allTypes = NetWorkUtils.isEmptyObject(customSet) ? TYPES : NetWorkUtils.mergeDeep(TYPES, customSet);
+        const allTypes = Utils.isEmptyObject(customSet) ? TYPES : Utils.mergeDeep(TYPES, customSet);
         let types = allTypes['errorPage'];
         if (['errorPage', 'noGoods', 'noNetwork', 'errorLocation'].indexOf(type) > -1) {
             types = allTypes[type];
