@@ -1,4 +1,4 @@
-<!-- 标题 -->
+<!-- 标题 头像左边文字 -->
 <template>
   <div class="wxc-title" :aria-hidden="true">
     <image class="logo" src="https://gw.alicdn.com/tfs/TB1JpgJRFXXXXc7XpXXXXXXXXXX-800-800.png"></image>

@@ -1,4 +1,4 @@
-<!-- 类型 -->
+<!-- 类型 说明抬头(类似h2标签) -->
 <template>
   <div class="category">
     <text class="category-text">{{title}}</text>

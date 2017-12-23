@@ -1,132 +1,61 @@
 <!-- 网络异常页 -->
 <template>
-  <div class="wrap" v-if="show" :style="wrapStyle">
-    <div class="wxc-result" :style="{paddingTop: setPaddingTop }">
-      <image
-        class="result-image"
-        :aria-hidden="true"
-        :src="resultType.pic"></image>
-      <div class="result-content" v-if="resultType.content">
-          <text class="content-text">{{resultType.content}}</text>
-          <text
-            class="content-text content-desc"
-            v-if="resultType.desc">{{resultType.desc}}</text>
-      </div>
-      <div
-        class="result-button"
-        v-if="resultType.button"
-        @touchend="handleTouchEnd"
-        @click="onClick">
-          <text class="button-text">{{resultType.button}}</text>
-      </div>
-    </div>
+  <div class="wrapper">
+    <!-- 标题栏 -->
+    <wxc-minibar
+      title="结果页"
+      right-button=""
+      left-button=""
+      background-color="#F2F3F4"
+      text-color="#333333"></wxc-minibar>
+    <!-- 内容部分-->
+    <wxc-result
+      :type="type"
+      padding-top="232"
+      @wxcResultButtonClicked="resultButtonClick"
+      :show="show"></wxc-result>
   </div>
 </template>
 
 <style scoped>
-  .wrap {
+  .wrapper {
     position: absolute;
     top: 0;
-    left: 0;
     right: 0;
+    left: 0;
     bottom: 0;
-  }
-  .wxc-result {
-    width: 750px;
-    flex: 1;
-    align-items: center;
-    background-color: #f2f3f4;
-  }
-  .result-image {
-    width: 320px;
-    height: 320px;
-  }
-  .result-content {
-    margin-top: 36px;
-    align-items: center;
-  }
-  .content-text {
-    font-size: 30px;
-    color: #A5A5A5;
-    height: 42px;
-    line-height: 42px;
-    text-align: center;
-  }
-  .content-desc {
-    margin-top: 10px;
-  }
-  .result-button {
-    margin-top: 60px;
-    border-width: 1px;
-    border-color: #979797;
-    background-color: #FFFFFF;
-    border-radius: 6px;
-    width: 240px;
-    height: 72px;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-  }
-  .button-text {
-    color: #666666;
-    font-size: 30px;
+    background-color: #fff;
   }
 </style>
 
 <script>
-  // 页面加载失败类型
-  import TYPES from './network';
-  // 功能函数
-  import { Utils } from 'weex-ui';
   // 弹窗
   const modal = weex.requireModule('modal');
+  // 结果页
+  import { WxcMinibar, WxcResult } from 'weex-ui';
 
   export default {
+    components: {
+      WxcMinibar,
+      WxcResult
+    },
     props: {
       type: {
-        type: String,
-        default: 'noNetwork'
+          type: String,
+          default: 'noNetwork'
       },
       show: {
-        type: Boolean,
-        default: true
-      },
-      wrapStyle: Object,
-      paddingTop: {
-        type: [Number, String],
-        default: 232
-      },
-      customSet: {
-        type: Object,
-        default: () => ({})
-      }
-    },
-    computed: {
-      resultType () {
-        const { type, customSet } = this;
-        const allTypes = Utils.isEmptyObject(customSet) ? TYPES : Utils.mergeDeep(TYPES, customSet);
-        let types = allTypes['errorPage'];
-        if (['errorPage', 'noGoods', 'noNetwork', 'errorLocation'].indexOf(type) > -1) {
-            types = allTypes[type];
-        }
-        return types;
-      },
-      setPaddingTop () {
-        const paddingTop = this.paddingTop;
-        return `${paddingTop}px`
+          type: Boolean,
+          default: true
       }
     },
     methods: {
-      handleTouchEnd (e) {
-        // web上面有点击穿透问题
-        const { platform } = weex.config.env;
-        platform === 'Web' && e.preventDefault && e.preventDefault();
-      },
-      onClick () {
+      resultButtonClick (e) {
         modal.toast({
-          message: '没有数据了',
-          duration: 1
+          'message': `你点击了按钮`,
+          'duration': 1
         });
+        // 返回首页
         this.$router.push({ path: '/home'});
       }
     }

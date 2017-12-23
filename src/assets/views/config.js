@@ -1,49 +1,18 @@
 /**
  * 顶部标签页 配置文件
  */
-
 export default {
-
   tabTitles: [
-    {
-      title: '热门跟团',
-      icon: 'https://gw.alicdn.com/tfs/TB1MWXdSpXXXXcmXXXXXXXXXXXX-72-72.png',
-      activeIcon: 'https://gw.alicdn.com/tfs/TB1kCk2SXXXXXXFXFXXXXXXXXXX-72-72.png',
-    },
-    {
-      title: '云南跟团',
-      icon: 'https://gw.alicdn.com/tfs/TB1ARoKSXXXXXc9XVXXXXXXXXXX-72-72.png',
-      activeIcon: 'https://gw.alicdn.com/tfs/TB19Z72SXXXXXamXFXXXXXXXXXX-72-72.png'
-    },
-    {
-      title: '四川跟团',
-      icon: 'https://gw.alicdn.com/tfs/TB1VKMISXXXXXbyaXXXXXXXXXXX-72-72.png',
-      activeIcon: 'https://gw.alicdn.com/tfs/TB1aTgZSXXXXXazXFXXXXXXXXXX-72-72.png'
-    },
-    {
-      title: '海南跟团',
-      icon: 'https://gw.alicdn.com/tfs/TB1Do3tSXXXXXXMaFXXXXXXXXXX-72-72.png',
-      activeIcon: 'https://gw.alicdn.com/tfs/TB1LiNhSpXXXXaWXXXXXXXXXXXX-72-72.png'
-    },
-    {
-      title: '北京跟团',
-      icon: 'https://gw.alicdn.com/tfs/TB1jFsLSXXXXXX_aXXXXXXXXXXX-72-72.png',
-      activeIcon: 'https://gw.alicdn.com/tfs/TB1_Kc.SXXXXXa8XpXXXXXXXXXX-72-72.png'
-    },
-    {
-      title: '出境跟团',
-      icon: 'https://gw.alicdn.com/tfs/TB199sPSXXXXXb4XVXXXXXXXXXX-72-72.png',
-      activeIcon: 'https://gw.alicdn.com/tfs/TB1DR.3SXXXXXc2XpXXXXXXXXXX-72-72.png'
-    }, {
-      title: '出境日游',
-      icon: 'https://gw.alicdn.com/tfs/TB1hedfSpXXXXchXXXXXXXXXXXX-72-72.png',
-      activeIcon: 'https://gw.alicdn.com/tfs/TB1mrXaSpXXXXaqXpXXXXXXXXXX-72-72.png'
-    },
-    {
-      title: '邮轮',
-      icon: 'https://gw.alicdn.com/tfs/TB1twhkSpXXXXXLXXXXXXXXXXXX-72-72.png',
-      activeIcon: 'https://gw.alicdn.com/tfs/TB1dhlhSpXXXXa8XXXXXXXXXXXX-72-72.png'
-    }
+    {title: "html5", url: "13"},
+    {title: "css", url: "14"},
+    {title: "javascript", url: "47"},
+    {title: "mysql", url: "12"},
+    {title: "jQuery", url: "11"},
+    {title: "php教程", url: "10"},
+    {title: "Linux运维", url: "44"},
+    {title: "其他", url: "57"},
+    {title: "ps教程", url: "62"},
+    {title: "APP开发", url: "71"}
   ],
   tabStyles: {
     bgColor: '#FFFFFF',
@@ -51,16 +20,19 @@ export default {
     activeTitleColor: '#3D3D3D',
     activeBgColor: '#FFFFFF',
     isActiveTitleBold: true,
-    iconWidth: 70,
-    iconHeight: 70,
+    iconWidth: 40,
+    iconHeight: 40,
     width: 160,
-    height: 120,
-    fontSize: 24,
+    height:120,
+    fontSize: 30,
     hasActiveBottom: true,
     activeBottomColor: '#FFC900',
     activeBottomHeight: 6,
-    activeBottomWidth: 120,
+    activeBottomWidth: 160,
     textPaddingLeft: 10,
     textPaddingRight: 10
   },
+  ajaxinfo(){
+    return 1111;
+  }
 }

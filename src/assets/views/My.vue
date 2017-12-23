@@ -16,7 +16,7 @@
     </scroller>
     <!-- 侧滑菜单 -->
     <wxc-popup
-      width="400"
+      width="500"
       :show="isRightShow"
       pos="right"
       ref="wxcPopup"
