@@ -26,6 +26,30 @@
         title="我的任务"
         :has-arrow="true"
         :has-top-border="false"></wxc-cell>
+      <!-- 出错啦 -->
+      <wxc-cell
+        title="出错啦"
+        @wxcCellClicked="errorPageClicked"
+        :has-arrow="true"
+        :has-top-border="false"></wxc-cell>
+      <!-- 暂无商品 -->
+      <wxc-cell
+        title="暂无商品"
+        @wxcCellClicked="noGoodsClicked"
+        :has-arrow="true"
+        :has-top-border="false"></wxc-cell>
+      <!-- 无网络 -->
+      <wxc-cell
+        title="无网络"
+        @wxcCellClicked="noNetworkClicked"
+        :has-arrow="true"
+        :has-top-border="false"></wxc-cell>
+      <!-- 定位失败 -->
+      <wxc-cell
+        title="定位失败"
+        @wxcCellClicked="errorLocationClicked"
+        :has-arrow="true"
+        :has-top-border="false"></wxc-cell>
     </scroller>
     <!-- 侧滑菜单 -->
     <wxc-popup
@@ -152,6 +176,22 @@
       },
       wxcCellClicked(){
         // 侧滑菜单点击
+      },
+      errorPageClicked(){
+        // 出错啦
+        this.$router.push({path:'/network',query:{type:'errorPage'}});
+      },
+      noGoodsClicked(){
+        // 暂无商品
+        this.$router.push({path:'/network',query:{type:'noGoods'}});
+      },
+      noNetworkClicked(){
+        // 无网络
+        this.$router.push({path:'/network',query:{type:'noNetwork'}});
+      },
+      errorLocationClicked(){
+        // 定位失败
+        this.$router.push({path:'/network',query:{type:'errorLocation'}});
       }
     }
   }

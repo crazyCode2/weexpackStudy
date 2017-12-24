@@ -39,22 +39,30 @@
       WxcMinibar,
       WxcResult
     },
-    props: {
-      type: {
-          type: String,
-          default: 'noNetwork'
-      },
-      show: {
-          type: Boolean,
-          default: true
+    // props: {
+    //   type: {
+    //       type: String,
+    //       default: 'noNetwork'
+    //   },
+    //   show: {
+    //       type: Boolean,
+    //       default: true
+    //   }
+    // },
+    data(){
+      return {
+        type: 'noNetwork',
+        show: true
+      }
+    },
+    created(){
+      if(this.$route.query.type){
+        // 获取其他页面参数
+        this.type = this.$route.query.type;
       }
     },
     methods: {
       resultButtonClick (e) {
-        modal.toast({
-          'message': `你点击了按钮`,
-          'duration': 1
-        });
         // 返回首页
         this.$router.push({ path: '/home'});
       }

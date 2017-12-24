@@ -87,6 +87,8 @@
 </style>
 
 <script>
+  // 弹窗
+  const modal = weex.requireModule('modal');
   // 引入 UI组件
   import { WxcMinibar, WxcPageCalendar } from 'weex-ui';
    
