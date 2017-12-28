@@ -37,6 +37,21 @@ export default new Router({
         	path: '/home',
         	component: ViewHome
         },
+        // 推荐
+        {
+            path: '/top',
+            component: ViewTopbvive
+        },
+        // 分类
+        {
+            path: '/demo',
+            component: ViewDemo
+        },
+        // PHP教程
+        {
+            path: '/all',
+            component: ViewAll
+        },
         // 关于
         {
         	path: '/my',
@@ -51,21 +66,6 @@ export default new Router({
         {
             path: '/video',
             component: ViewVideo
-        },
-        // 分类
-        {
-        	path: '/demo',
-        	component: ViewDemo
-        },
-        // PHP教程
-        {
-        	path: '/all',
-        	component: ViewAll
-        },
-        // 推荐
-        {
-        	path: '/top',
-        	component: ViewTopbvive
         },
         // 公用 webview
         {

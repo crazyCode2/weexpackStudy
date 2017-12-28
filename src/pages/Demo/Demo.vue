@@ -91,7 +91,10 @@
         };
         // 请求数据
         this.$api.get('webservice/Api/List?',params,function(data) {
-          console.log('Demo数据：' + JSON.stringify(data));
+          if(data.list.length > 1){
+            console.log('获取数据成功!');
+          }
+          // console.log(JSON.stringify(data));
         })
       }
     }
