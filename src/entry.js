@@ -6,7 +6,10 @@ import router from './router'
 // import { sync } from 'vuex-router-sync'
 import * as filters from './filters'
 import mixins from './mixins'
+// 引入 接口文件
 import api from './api'
+// 引入 vuex入口文件
+import store from './vuex/index'
 
 //在入口文件中引入文件并将变量挂到全局
 import defines from './defines'
@@ -33,6 +36,6 @@ Vue.use(VueResource)
 // create the app instance.
 // here we inject the router and store to all child components,
 // making them available everywhere as `this.$router` and `this.$store`.
-new Vue(Vue.util.extend({ el: '#root', router }, App));
+new Vue(Vue.util.extend({ el: '#root', router, store }, App));
 
 router.push('/');

@@ -2,7 +2,7 @@
 <template>
   <div class="app-wrapper">
     <router-view class="r-box"></router-view>
-    <tab-bar @tabTo="onTabTo"></tab-bar>
+    <tab-bar @tabTo="onTabTo" v-show="tabbarShow"></tab-bar>
   </div>
 </template>
 
@@ -35,10 +35,12 @@
   import util from './assets/util';
   // 底部选项卡组件
   import tabBar from './assets/components/TabBar.vue';
+  // 引入 vuex 的两个方法
+  import {mapGetters, mapActions} from 'vuex'
   
   export default {
     data () {
-      return {
+      return { 
       }
     },
     components: {
@@ -46,6 +48,25 @@
     },
     created () {
       util.initIconFont();
+    },
+    // 计算属性
+    computed:mapGetters([
+      // 从 getters 中获取值
+      'tabbarShow'
+    ]),
+    // 监听,当路由发生变化的时候执行
+    watch:{
+      $route(to,from){
+        if(to.path == '/' || to.path == '/home' || to.path == '/top' || to.path == '/demo' || to.path == '/all' || to.path == '/my'){
+          /**
+           * $store来自Store对象
+           * dispatch 向 actions 发起请求
+           */
+          this.$store.dispatch('showTabBar');
+        }else{
+          this.$store.dispatch('hideTabBar');
+        }
+      }
     },
     methods: {
       onTabTo(_result){
