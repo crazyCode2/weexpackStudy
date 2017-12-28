@@ -66,7 +66,7 @@
         :has-arrow="true"
         :cell-style="cellStyle"
         :has-top-border="false"
-        @wxcCellClicked="wxcCellClicked"
+        @wxcCellClicked="cartoonClicked"
         :auto-accessible="false">
         <image
           class="image"
@@ -81,7 +81,7 @@
         :has-arrow="true"
         :cell-style="cellStyle"
         :has-top-border="false"
-        @wxcCellClicked="wxcCellClicked"
+        @wxcCellClicked="musicClicked"
         :auto-accessible="false">
         <image
           class="image"
@@ -96,7 +96,7 @@
         :has-arrow="true"
         :cell-style="cellStyle"
         :has-top-border="false"
-        @wxcCellClicked="wxcCellClicked"
+        @wxcCellClicked="videoClicked"
         :auto-accessible="false">
         <image
           class="image"
@@ -174,8 +174,15 @@
         // 隐藏侧滑菜单
         this.isRightShow = false;
       },
-      wxcCellClicked(){
-        // 侧滑菜单点击
+      cartoonClicked(){
+        // 动漫
+        this.$router.push({path:'/cartoon'});
+      },
+      musicClicked(){
+        // 音乐
+      },
+      videoClicked(){
+        // 视频
       },
       errorPageClicked(){
         // 出错啦

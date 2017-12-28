@@ -55,8 +55,13 @@
     },
     data () {
       return {
-        value: ''
+        value: '',
+        catid: 10,
+        pagesize: 20
       }
+    },
+    created () {
+      this.getData();
     },
     methods: {
       wxcSearchbarCancelClicked () {
@@ -78,6 +83,16 @@
       wxcSearchbarInputOnBlur () {
         // 输入框失去焦点事件
         modal.toast({ 'message': 'onbulr', 'duration': 1 });
+      },
+      getData(){
+        let params = {
+          catid: this.catid,
+          pagesize: this.pagesize
+        };
+        // 请求数据
+        this.$api.get('webservice/Api/List?',params,function(data) {
+          console.log('Demo数据：' + JSON.stringify(data));
+        })
       }
     }
   }

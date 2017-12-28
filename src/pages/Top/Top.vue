@@ -75,22 +75,29 @@
     created (){
       var me = this;
       // 首次请求数据
-      stream.fetch({
-        method: 'GET',
-        type: 'text',
-        url: this.webUrl+'/webservice/Api/List?catid=10&pagesize=20',
-      }, function(ret) {
-        if(ret.ok){
-          // 解密
-          var test = jwtdecode.decode(ret.data, 'michahzdee2016', 'HS256');
-          me.lists = test.list;
-          me.count = test.count/20;
-          me.network = 1;
-        } else {
-          me.network = 0;
-          modal.toast({ 'message': '没有网络', 'duration': 1 });
-          return false;
-        }
+      // stream.fetch({
+      //   method: 'GET',
+      //   type: 'text',
+      //   url: this.webUrl+'/webservice/Api/List?catid=10&pagesize=20',
+      // }, function(ret) {
+      //   if(ret.ok){
+      //     // 解密
+      //     var test = jwtdecode.decode(ret.data, 'michahzdee2016', 'HS256');
+      //     me.lists = test.list;
+      //     me.count = test.count/20;
+      //     me.network = 1;
+      //   } else {
+      //     me.network = 0;
+      //     modal.toast({ 'message': '没有网络', 'duration': 1 });
+      //     return false;
+      //   }
+      // })
+      
+      /*请求数据*/
+      this.$api.get('webservice/Api/List?',{catid:10,pagesize:20},function(data) {
+        me.lists = data.list;
+        me.count = data.count/20;
+        me.network = 1;
       })
     },
     methods: {

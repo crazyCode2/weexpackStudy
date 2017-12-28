@@ -2,24 +2,24 @@
 <template>
   <div class="wrapper">
     <div class="bar-item" @click="tabTo('home')">
-      <text class="bar-ic iconfont" :style="testCS">&#xe65c;</text>
-      <text class="bar-txt">首页</text>
+      <text class="bar-ic iconfont" :style="isActive('home')">&#xe65c;</text>
+      <text class="bar-txt" :style="isActive('home')">首页</text>
     </div>
     <div class="bar-item" @click="tabTo('top')">
-      <text class="bar-ic iconfont">&#xe608;</text>
-      <text class="bar-txt">推荐</text>
+      <text class="bar-ic iconfont" :style="isActive('top')">&#xe608;</text>
+      <text class="bar-txt" :style="isActive('top')">推荐</text>
     </div>
     <div class="bar-item act" @click="tabTo('demo')">
-      <text class="bar-ic iconfont">&#xe7f9;</text>
-      <text class="bar-txt">分类</text>
+      <text class="bar-ic iconfont" :style="isActive('demo')">&#xe7f9;</text>
+      <text class="bar-txt" :style="isActive('demo')">分类</text>
     </div>
     <div class="bar-item" @click="tabTo('all')">
-      <text class="bar-ic iconfont">&#xe625;</text>
-      <text class="bar-txt">PHP教程</text>
+      <text class="bar-ic iconfont" :style="isActive('all')">&#xe625;</text>
+      <text class="bar-txt" :style="isActive('all')">PHP教程</text>
     </div>
     <div class="bar-item" @click="tabTo('my')">
-      <text class="bar-ic iconfont">&#xe606;</text>
-      <text class="bar-txt">关于</text>
+      <text class="bar-ic iconfont" :style="isActive('my')">&#xe606;</text>
+      <text class="bar-txt" :style="isActive('my')">关于</text>
     </div>
   </div>
 </template>
@@ -48,7 +48,7 @@
     text-align: center;
   }
   .bar-active{
-    color:#b4282d;
+    color:rgb(92, 184, 92);
   }
   .bar-ic{
     padding-top: 7px;
@@ -65,22 +65,23 @@
   var modal = weex.requireModule('modal');
 
   export default {
-    computed:{
-      testCS:function () {
-        return this.pIndexKey == 'home'?'color:#b4282d;':''
-      }
-    },
     data () {
       return {
         pIndexKey:'home'
       }
     },
     mounted(){
+      this.isActive('home');
     },
     methods: {
+      isActive(key){
+        return this.pIndexKey == key?'color:#b4282d;':''
+      },
+      // 切换tab
       tabTo(_key){
         if(this.pIndexKey == _key) return;
         this.pIndexKey = _key;
+        // 向父组件传值
         this.$emit('tabTo',{
           status : 'tabTo',
           data : {

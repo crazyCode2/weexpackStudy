@@ -73,10 +73,6 @@
   import { WxcMinibar, WxcTabPage, WxcPanItem, WxcCell, Utils } from 'weex-ui';
   // 配置文件
   import Config from './config';
-  // 数据请求组件
-  var stream = weex.requireModule('stream');
-  // 身份验证
-  import jwtdecode from 'jwt-simple';
   // 引入 请求失败页面
   import NetWork from '../Network.vue';
 
@@ -125,77 +121,103 @@
       this.tabPageHeight = Utils.env.getPageHeight();
       // 发起 数据请求
       var me = this;
-      stream.fetch({
-        method: 'GET',
-        type: 'text',
-        url: this.webUrl+'/webservice/Api/List?catid=10&pagesize=20',
-      }, function(ret) {
-        if(ret.ok){
-          // 解密
-          var test = jwtdecode.decode(ret.data, 'michahzdee2016', 'HS256');
-          me.lists = test.list;
-          me.network = 1; // 不显示'网络异常'
-        } else {
-          me.network = 0; // 显示'网络异常'
-          modal.toast({
-            'message': '没有网络!',
-            'duration': 1
-          });
-          return false;
-        }
+      // stream.fetch({
+      //   method: 'GET',
+      //   type: 'text',
+      //   url: this.webUrl+'/webservice/Api/List?catid=10&pagesize=20',
+      // }, function(ret) {
+      //   if(ret.ok){
+      //     // 解密
+      //     var test = jwtdecode.decode(ret.data, 'michahzdee2016', 'HS256');
+      //     me.lists = test.list;
+      //     me.network = 1; // 不显示'网络异常'
+      //   } else {
+      //     me.network = 0; // 显示'网络异常'
+      //     modal.toast({
+      //       'message': '没有网络!',
+      //       'duration': 1
+      //     });
+      //     return false;
+      //   }
+      // })
+
+      /*请求数据*/
+      this.$api.get('webservice/Api/List?',{catid:10,pagesize:20},function(data) {
+        me.lists = data.list;
+        me.network = 1;
       })
     },
     methods: {
       // 获取 类型数据
       getCategory(){
         var me = this;
-        stream.fetch({
-          method: 'GET',
-          type: 'text',
-          url: this.webUrl+'/webservice/Api/getCategoryArticle?catid=9&pagesize=10',
-        }, function(ret) {
-          if(ret.ok){
-            me.network = 1;
-            var test = jwtdecode.decode(ret.data, 'michahzdee2016', 'HS256');
-            // 类型数据
-            me.tabList = test.list;
-          } else {
-            me.network = 0;
-            modal.toast({
-              'message': '没有网络!',
-              'duration': 1
-            });
-            return false;
-          } 
-        });
+        // stream.fetch({
+        //   method: 'GET',
+        //   type: 'text',
+        //   url: this.webUrl+'/webservice/Api/getCategoryArticle?catid=9&pagesize=10',
+        // }, function(ret) {
+        //   if(ret.ok){
+        //     me.network = 1;
+        //     var test = jwtdecode.decode(ret.data, 'michahzdee2016', 'HS256');
+        //     // 类型数据
+        //     me.tabList = test.list;
+        //   } else {
+        //     me.network = 0;
+        //     modal.toast({
+        //       'message': '没有网络!',
+        //       'duration': 1
+        //     });
+        //     return false;
+        //   } 
+        // });
+
+        /*请求数据*/
+        this.$api.get('webservice/Api/getCategoryArticle?',{catid:9,pagesize:10},function(data) {
+          me.network = 1;
+          me.tabList = data.list;
+        })
 
         var metest = this;
         var mylist = new Array();
-        stream.fetch({
-          method: 'GET',
-          type: 'text',
-          url: this.webUrl+'/webservice/Api/getCategory?catid=9',
-        }, function(ret) {
-          if(ret.ok){
-            metest.network=1;
-            var test = jwtdecode.decode(ret.data, 'michahzdee2016', 'HS256');
-            if (Array.isArray(test.list)) {
-              for(var i = 0; i < test.list.length; i++) {
-                mylist[i] = [];
-                mylist[i]['title'] = test.list[i]['catname'];
-                mylist[i]['url'] = test.list[i]['catid'];
-              }
+        // stream.fetch({
+        //   method: 'GET',
+        //   type: 'text',
+        //   url: this.webUrl+'/webservice/Api/getCategory?catid=9',
+        // }, function(ret) {
+        //   if(ret.ok){
+        //     metest.network=1;
+        //     var test = jwtdecode.decode(ret.data, 'michahzdee2016', 'HS256');
+        //     if (Array.isArray(test.list)) {
+        //       for(var i = 0; i < test.list.length; i++) {
+        //         mylist[i] = [];
+        //         mylist[i]['title'] = test.list[i]['catname'];
+        //         mylist[i]['url'] = test.list[i]['catid'];
+        //       }
+        //     }
+        //     // 顶部标签页 标题
+        //     metest.tabTitles = mylist;
+        //   } else {
+        //     metest.network = 0;
+        //     modal.toast({
+        //       'message': '没有网络!',
+        //       'duration': 1
+        //     });
+        //     return false;
+        //   } 
+        // })
+
+        /*请求数据*/
+        this.$api.get('webservice/Api/getCategory?',{catid:9},function(data) {
+          me.network = 1;
+          if (Array.isArray(data.list)) {
+            for(var i = 0; i < data.list.length; i++) {
+              mylist[i] = [];
+              mylist[i]['title'] = data.list[i]['catname'];
+              mylist[i]['url'] = data.list[i]['catid'];
             }
-            // 顶部标签页 标题
-            metest.tabTitles = mylist;
-          } else {
-            metest.network = 0;
-            modal.toast({
-              'message': '没有网络!',
-              'duration': 1
-            });
-            return false;
-          } 
+          }
+          // 顶部标签页 标题
+          metest.tabTitles = mylist;
         })
       },
       wxcTabPageCurrentTabSelected (e) {

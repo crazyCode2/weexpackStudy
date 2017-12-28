@@ -6,6 +6,10 @@ import Router from 'vue-router'
 import ViewHome from './pages/Home/Home.vue'
 // 关于
 import ViewMy from './pages/My/My.vue'
+// 视频列表
+import ViewCartoon from './pages/My/Cartoon.vue'
+// 视频
+import ViewVideo from './pages/My/Video.vue'
 // PHP教程
 import ViewAll from './pages/All/All.vue'
 // 分类
@@ -37,6 +41,16 @@ export default new Router({
         {
         	path: '/my',
         	component: ViewMy
+        },
+        // 视频列表
+        {
+            path: '/cartoon',
+            component: ViewCartoon
+        },
+        // 视频
+        {
+            path: '/video',
+            component: ViewVideo
         },
         // 分类
         {

@@ -6,6 +6,7 @@ import router from './router'
 // import { sync } from 'vuex-router-sync'
 import * as filters from './filters'
 import mixins from './mixins'
+import api from './api'
 
 //在入口文件中引入文件并将变量挂到全局
 import defines from './defines'
@@ -24,6 +25,8 @@ Object.keys(filters).forEach(key => {
 
 // register global mixins.
 Vue.mixin(mixins)
+// 将API方法绑定到全局
+Vue.prototype.$api = api
 
 import VueResource from 'vue-resource'
 Vue.use(VueResource)
