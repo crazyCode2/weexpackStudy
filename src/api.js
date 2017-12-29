@@ -101,11 +101,5 @@ export default {
   },
   post: function (url, params, success, failure) {
     return apiStream('POST', url, params, success, failure)
-  },
-  put: function (url, params, success, failure) {
-    return apiStream('PUT', url, params, success, failure)
-  },
-  delete: function (url, params, success, failure) {
-    return apiStream('DELETE', url, params, success, failure)
   }
 }
