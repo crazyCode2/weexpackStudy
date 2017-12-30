@@ -38,4 +38,5 @@ Vue.use(VueResource)
 // making them available everywhere as `this.$router` and `this.$store`.
 new Vue(Vue.util.extend({ el: '#root', router, store }, App));
 
+// 默认跳转的页面
 router.push('/');

@@ -31,8 +31,5 @@ export default {
     activeBottomWidth: 160,
     textPaddingLeft: 10,
     textPaddingRight: 10
-  },
-  ajaxinfo(){
-    return 1111;
   }
 }

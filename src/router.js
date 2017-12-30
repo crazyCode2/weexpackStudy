@@ -2,6 +2,8 @@
  * 配置路由
  */
 import Router from 'vue-router'
+// 登录页
+import ViewLogin from './pages/Login/Login.vue'
 // 首页
 import ViewHome from './pages/Home/Home.vue'
 // 关于
@@ -31,6 +33,11 @@ export default new Router({
         {
         	path: '/',
         	redirect: '/home'
+        },
+        // 登录页
+        {
+            path: '/login',
+            component: ViewLogin
         },
         // 首页
         {

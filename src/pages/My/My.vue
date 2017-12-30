@@ -180,9 +180,11 @@
       },
       musicClicked(){
         // 音乐
+        this.$router.push({path:'/login'});
       },
       videoClicked(){
         // 视频
+        this.$store.dispatch('setLogin',false);
       },
       errorPageClicked(){
         // 出错啦

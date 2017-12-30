@@ -16,12 +16,16 @@ const store = new Vuex.Store({
   mutations,
 
   state: {
-    tabbar:true
+    tabbar:true, // 底部tab栏
+    login:false
   },
 
   getters: {
     tabbarShow (state) {
       return state.tabbar;
+    },
+    isLogin(state){
+      return state.login;
     }
   }
 })

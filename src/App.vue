@@ -47,6 +47,7 @@
       'tab-bar': tabBar
     },
     created () {
+      // 初始图标
       util.initIconFont();
     },
     // 计算属性

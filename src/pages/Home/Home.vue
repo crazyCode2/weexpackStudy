@@ -10,54 +10,45 @@
       text-color="#333333"></wxc-minibar>
     <!-- 滚动视图 scroller需要用一个div将内容包含 -->
     <scroller class="main-list">
-      <!-- 请求数据成功 -->
-      <div v-if="network">
-        <!-- 轮播图 -->
-        <kx-slider :imageList="Banners"></kx-slider>
-        <!-- 顶部标签页 -->
-        <wxc-tab-page
-          ref="wxc-tab-page"
-          :tab-titles="tabTitles"
-          :tab-styles="tabStyles"
-          title-type="text"
-          :needSlider="needSlider"
-          :is-tab-view="isTabView"
-          :tab-page-height="tabPageHeight"
-          :spm-c="4307989"
-          @wxcTabPageCurrentTabSelected="wxcTabPageCurrentTabSelected">
-            <list
-              v-for="(v,index) in tabList"
-              :key="index"
-              class="item-container">
-              <cell class="border-cell"></cell>
-              <cell
-                class="cell"
-                v-for="(demo,key) in v"
-                :accessible="true"
-                :aria-label="demo.title"
-                :key="key">
-                  <wxc-pan-item
-                    :ext-id="'1-' + (v) + '-' + (key)"
-                    @wxcPanItemPan="wxcPanItemPan" >
-                      <wxc-cell
-                        label=""
-                        :title="demo.title"
-                        :has-arrow="true"
-                        @wxcCellClicked="wxcCellClicked(webUrl+'/'+demo.inputtime.replace('-','').replace('-','')+'/'+demo.id+'.shtml')"
-                        spm="181.12312312.12312.d01"
-                        :has-top-border="false"
-                        :price="demo.inputtime"></wxc-cell>
-                  </wxc-pan-item>
-              </cell>
-            </list>
-        </wxc-tab-page>
-      </div>
-      <!-- 请求数据失败 -->
-      <div v-if="network ==0 ">
-        <net-work
-          :type="type"
-          :show="show"></net-work>
-      </div> 
+      <!-- 轮播图 -->
+      <kx-slider :imageList="Banners"></kx-slider>
+      <!-- 顶部标签页 -->
+      <wxc-tab-page
+        ref="wxc-tab-page"
+        :tab-titles="tabTitles"
+        :tab-styles="tabStyles"
+        title-type="text"
+        :needSlider="needSlider"
+        :is-tab-view="isTabView"
+        :tab-page-height="tabPageHeight"
+        :spm-c="4307989"
+        @wxcTabPageCurrentTabSelected="wxcTabPageCurrentTabSelected">
+          <list
+            v-for="(v,index) in tabList"
+            :key="index"
+            class="item-container">
+            <cell class="border-cell"></cell>
+            <cell
+              class="cell"
+              v-for="(demo,key) in v"
+              :accessible="true"
+              :aria-label="demo.title"
+              :key="key">
+                <wxc-pan-item
+                  :ext-id="'1-' + (v) + '-' + (key)"
+                  @wxcPanItemPan="wxcPanItemPan" >
+                    <wxc-cell
+                      label=""
+                      :title="demo.title"
+                      :has-arrow="true"
+                      @wxcCellClicked="wxcCellClicked(webUrl+'/'+demo.inputtime.replace('-','').replace('-','')+'/'+demo.id+'.shtml')"
+                      spm="181.12312312.12312.d01"
+                      :has-top-border="false"
+                      :price="demo.inputtime"></wxc-cell>
+                </wxc-pan-item>
+            </cell>
+          </list>
+      </wxc-tab-page>
     </scroller>   
   </div>
 </template>
@@ -73,8 +64,8 @@
   import { WxcMinibar, WxcTabPage, WxcPanItem, WxcCell, Utils } from 'weex-ui';
   // 配置文件
   import Config from './config';
-  // 引入 请求失败页面
-  import NetWork from '../Network.vue';
+  // 引入 vuex 的两个方法
+  import {mapGetters, mapActions} from 'vuex';
 
   export default {
     components: {
@@ -83,8 +74,7 @@
       WxcTabPage,
       WxcPanItem,
       WxcCell,
-      Utils,
-      NetWork
+      Utils
     },
     data () {
       return {
@@ -104,14 +94,14 @@
         tabList: [],
         demoList: [1, 2, 3, 4, 5, 6, 7, 8, 9],
         // 请求数据
-        lists:[],
-        // 是否显示'网络异常'
-        network:1,
-        // 请求类型数据
-        type: 'noNetwork',
-        show: true
+        lists:[]
       }
     },
+    // 计算属性
+    computed:mapGetters([
+      // 从 getters 中获取值
+      'isLogin'
+    ]),
     created () {
       // 字体图标初始化
       util.initIconFont();
@@ -119,96 +109,34 @@
       this.getCategory();
       // 根据设备 设置Tab page 页面的高度
       this.tabPageHeight = Utils.env.getPageHeight();
+      //如果不是首次启动,且没有登陆,则跳到登录页面
+      // this.$router.currentRoute.path =='/home' && !this.isLogin && this.$router.push({path:'/login'});
       // 发起 数据请求
       var me = this;
-      // stream.fetch({
-      //   method: 'GET',
-      //   type: 'text',
-      //   url: this.webUrl+'/webservice/Api/List?catid=10&pagesize=20',
-      // }, function(ret) {
-      //   if(ret.ok){
-      //     // 解密
-      //     var test = jwtdecode.decode(ret.data, 'michahzdee2016', 'HS256');
-      //     me.lists = test.list;
-      //     me.network = 1; // 不显示'网络异常'
-      //   } else {
-      //     me.network = 0; // 显示'网络异常'
-      //     modal.toast({
-      //       'message': '没有网络!',
-      //       'duration': 1
-      //     });
-      //     return false;
-      //   }
-      // })
-
       /*请求数据*/
       this.$api.get('webservice/Api/List?',{catid:10,pagesize:20},function(data) {
         me.lists = data.list;
-        me.network = 1;
-      })
+      },function() {
+        // 无网络
+        me.$router.push({path:'/network',query:{type:'noNetwork'}});
+      });
     },
     methods: {
       // 获取 类型数据
       getCategory(){
         var me = this;
-        // stream.fetch({
-        //   method: 'GET',
-        //   type: 'text',
-        //   url: this.webUrl+'/webservice/Api/getCategoryArticle?catid=9&pagesize=10',
-        // }, function(ret) {
-        //   if(ret.ok){
-        //     me.network = 1;
-        //     var test = jwtdecode.decode(ret.data, 'michahzdee2016', 'HS256');
-        //     // 类型数据
-        //     me.tabList = test.list;
-        //   } else {
-        //     me.network = 0;
-        //     modal.toast({
-        //       'message': '没有网络!',
-        //       'duration': 1
-        //     });
-        //     return false;
-        //   } 
-        // });
-
         /*请求数据*/
         this.$api.get('webservice/Api/getCategoryArticle?',{catid:9,pagesize:10},function(data) {
-          me.network = 1;
           me.tabList = data.list;
-        })
+        },function() {
+          // 无网络
+          me.$router.push({path:'/network',query:{type:'noNetwork'}});
+        });
 
         var metest = this;
         var mylist = new Array();
-        // stream.fetch({
-        //   method: 'GET',
-        //   type: 'text',
-        //   url: this.webUrl+'/webservice/Api/getCategory?catid=9',
-        // }, function(ret) {
-        //   if(ret.ok){
-        //     metest.network=1;
-        //     var test = jwtdecode.decode(ret.data, 'michahzdee2016', 'HS256');
-        //     if (Array.isArray(test.list)) {
-        //       for(var i = 0; i < test.list.length; i++) {
-        //         mylist[i] = [];
-        //         mylist[i]['title'] = test.list[i]['catname'];
-        //         mylist[i]['url'] = test.list[i]['catid'];
-        //       }
-        //     }
-        //     // 顶部标签页 标题
-        //     metest.tabTitles = mylist;
-        //   } else {
-        //     metest.network = 0;
-        //     modal.toast({
-        //       'message': '没有网络!',
-        //       'duration': 1
-        //     });
-        //     return false;
-        //   } 
-        // })
-
         /*请求数据*/
         this.$api.get('webservice/Api/getCategory?',{catid:9},function(data) {
-          me.network = 1;
           if (Array.isArray(data.list)) {
             for(var i = 0; i < data.list.length; i++) {
               mylist[i] = [];
@@ -218,7 +146,10 @@
           }
           // 顶部标签页 标题
           metest.tabTitles = mylist;
-        })
+        },function() {
+          // 无网络
+          metest.$router.push({path:'/network',query:{type:'noNetwork'}});
+        });
       },
       wxcTabPageCurrentTabSelected (e) {
         const self = this;

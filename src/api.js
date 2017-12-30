@@ -61,12 +61,11 @@ function apiStream (method, url, params, success, failure) {
       if (res.ok) {
         // 解密
         let currentData = jwtdecode.decode(res.data, 'michahzdee2016', 'HS256');
+        // 成功的回调
         success(currentData);
       }else {
-        modal.toast({
-          message: '请求失败,请检查网络!',
-          duration: 2
-        })
+        // 失败的回调
+        failure();
       }
     })
   }else if(method === 'POST'){
@@ -81,12 +80,11 @@ function apiStream (method, url, params, success, failure) {
       if (res.ok) {
         // 解密
         let currentData = jwtdecode.decode(res.data, 'michahzdee2016', 'HS256');
+        // 成功的回调
         success(currentData);
       }else {
-        modal.toast({
-          message: '请求失败,请检查网络!',
-          duration: 2
-        })
+        // 失败的回调
+        failure();
       }
     },function(progress) {
       //
