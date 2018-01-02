@@ -2,8 +2,8 @@
 <template>
   <div class="wrapper">
     <div class="bar-item" @click="tabTo('home')">
-      <text class="bar-ic iconfont" :class="{'bar-active':setActive}" :style="isActive('home')">&#xe65c;</text>
-      <text class="bar-txt" :class="{'bar-active':setActive}" :style="isActive('home')">首页</text>
+      <text class="bar-ic iconfont" :style="isActive('home')">&#xe65c;</text>
+      <text class="bar-txt" :style="isActive('home')">首页</text>
     </div>
     <div class="bar-item" @click="tabTo('top')">
       <text class="bar-ic iconfont" :style="isActive('top')">&#xe608;</text>
@@ -70,14 +70,12 @@
         pIndexKey:'home'
       }
     },
-    computed:{
-      setActive() {
-        return this.pIndexKey == 'home'?'color:#b4282d;':''
-      }
+    mounted:function() {
+      this.isActive();
     },
     methods: {
       isActive(key){
-        return this.pIndexKey == key?'color:rgb(92, 184, 92);':''
+        return this.pIndexKey == key?'color:#b4282d;':''
       },
       // 切换tab
       tabTo(_key){
