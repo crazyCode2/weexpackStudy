@@ -2,8 +2,10 @@
 <template>
   <div class="wrapper">
     <div class="bar-item" @click="tabTo('home')">
-      <text class="bar-ic iconfont" :style="isActive('home')">&#xe65c;</text>
-      <text class="bar-txt" :style="isActive('home')">首页</text>
+      <text class="bar-ic iconfont home-normal"  :style="isActive('home')" v-if="pIndexKey=='home'" style="color: rgb(180, 40, 45)">&#xe65c;</text>
+      <text class="bar-ic iconfont home-normal"  :style="isActive('home')" v-else >&#xe65c;</text>
+      <text class="bar-txt home-normal" :style="isActive('home')" v-if="pIndexKey=='home'" style="color: rgb(180, 40, 45)">首页</text>
+      <text class="bar-txt home-normal" :style="isActive('home')" v-else>首页</text>
     </div>
     <div class="bar-item" @click="tabTo('top')">
       <text class="bar-ic iconfont" :style="isActive('top')">&#xe608;</text>
@@ -27,6 +29,9 @@
 <style scoped>
   .iconfont {
     font-family:iconfont;
+  }
+  .home-normal{
+
   }
   .wrapper{
     position: fixed;
@@ -71,7 +76,7 @@
       }
     },
     mounted:function() {
-      this.isActive();
+      this.isActive('home');
     },
     methods: {
       isActive(key){
