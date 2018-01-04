@@ -62,7 +62,7 @@
       // 返回
       back (event) {
         webview.goBack(this.$refs.wv);
-        // window.history.go(-1)
+        // window.history.go(-1);
       },
       // 刷新
       reload (event) {

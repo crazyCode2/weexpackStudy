@@ -1,5 +1,6 @@
 <!-- 轮播图 组件 -->
 <template>
+  <!-- slider 内置组件 -->
   <slider class="slider" auto-play="true" interval="5000" @change="onchange">
     <div class="frame" v-for="img in imageList">
       <image class="image" resize="cover" :src="img.src"></image>

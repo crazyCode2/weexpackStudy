@@ -2,6 +2,10 @@
  * 配置路由
  */
 import Router from 'vue-router'
+// 引导页
+import ViewGuide from './pages/Guide/Guide.vue'
+// splash页面
+import ViewSplash from './pages/Guide/Splash.vue'
 // 登录页
 import ViewLogin from './pages/Login/Login.vue'
 // 首页
@@ -33,6 +37,16 @@ export default new Router({
         {
         	path: '/',
         	redirect: '/home'
+        },
+        // 引导页
+        {
+            path: '/guide',
+            component: ViewGuide
+        },
+        // splash页面
+        {
+            path: '/splash',
+            component: ViewSplash
         },
         // 登录页
         {

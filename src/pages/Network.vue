@@ -64,7 +64,8 @@
     methods: {
       resultButtonClick (e) {
         // 返回首页
-        this.$router.push({ path: '/home'});
+        // this.$router.push({ path: '/home'});
+        window.history.go(-1);
       }
     }
   };

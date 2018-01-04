@@ -11,7 +11,7 @@
     <!-- 滚动视图 scroller需要用一个div将内容包含 -->
     <scroller class="main-list">
       <!-- 轮播图 -->
-      <kx-slider :imageList="Banners"></kx-slider>
+      <slider :imageList="Banners"></slider>
       <!-- 顶部标签页 -->
       <wxc-tab-page
         ref="wxc-tab-page"
@@ -69,7 +69,7 @@
 
   export default {
     components: {
-      'kx-slider': Slider,
+      Slider,
       WxcMinibar,
       WxcTabPage,
       WxcPanItem,
