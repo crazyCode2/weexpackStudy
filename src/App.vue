@@ -36,7 +36,7 @@
   // 底部选项卡组件
   import tabBar from './assets/components/TabBar.vue';
   // 引入 vuex 的两个方法
-  import {mapGetters, mapActions} from 'vuex'
+  import { mapGetters, mapActions } from 'vuex'
   
   export default {
     data () {

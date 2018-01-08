@@ -10,7 +10,7 @@
   </div>
 </template>
 
-<style>
+<style scoped>
   .wrap{
     align-items: center;
     justify-content: center;

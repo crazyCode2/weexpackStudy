@@ -3,11 +3,11 @@
   <div class="wrapper">  
     <div class="login">  
       <div class="input-wrapper">  
-        <input @change="onchangeUserNumber" class="input" type="text" placeholder="账号" autofocus="true" value=""/> 
+        <input v-model="userNumber" class="input" type="text" placeholder="账号" autofocus="true" value=""/> 
         <image class="input-img" src="http://cdn-img.easyicon.net/png/11741/1174195.gif"></image>  
       </div>
       <div class="input-wrapper">  
-        <input @change="onchangeUserPassword" class="input" type="password" placeholder="密码" value=""/>
+        <input v-model="userPassword" class="input" type="password" placeholder="密码" value=""/>
         <image class="input-img" src="http://cdn-img.easyicon.net/png/11741/1174192.gif"></image>  
       </div>  
       <div class="input-wrapper">  
@@ -35,16 +35,10 @@
       }
     },
     created () {
-      // 隐藏tab栏
+      // 隐藏tabbar
       this.$store.dispatch('hideTabBar');
     }, 
-    methods:{  
-      onchangeUserNumber(event) {  
-        this.userNumber = event.value;  
-      },  
-      onchangeUserPassword(event) {  
-        this.userPassword = event.value;  
-      },  
+    methods:{ 
       /*找回密码*/  
       findPassword() {
         modal.toast({
@@ -61,84 +55,97 @@
       },
       /*处理登录*/  
       login() {  
-        if(this.userNumber.length < 1){
+        if(!this.userNumber){
           modal.toast({
             'message': '请输入手机号',
             'duration': 1
           });
           return;  
-        }else if(this.userPassword.length < 1){
+        }else if(!this.userPassword.length){
           modal.toast({
             'message': '请输入密码',
             'duration': 1
           });
           return;  
         }
-        /*登录成功*/
-        // 设置登录状态
-        // this.$store.commit('SET_LOGIN',data);
-        this.$store.dispatch('setLogin',true);
+        // 登录成功
+        modal.toast({
+          'message': '登录成功',
+          'duration': 1
+        });
         // 跳转home
-        this.$router.push({path:'/home'});
+        this.$router.push({path:'/'});
       }  
     }  
   }  
 </script>  
   
-<style>  
-  .wrapper {  
+<style scoped>
+  /*整体框架 绝对定位*/
+  .wrapper { 
+    position: absolute;  
+    top: 0;  
+    right: 0;  
+    bottom: 0;  
+    left: 0;  
+  }  
+  .login{
+    width: 600px;
+    height: 500px;
+    /*垂直水平居中*/
     position: absolute;  
     top: 0;  
     right: 0;  
     bottom: 0;  
     left: 0;
-  }  
-  .login{  
-    margin-top: 180px;  
+    margin: auto;  
   }  
   .input-wrapper{  
-    width: 90%; 
-    margin: 0px auto 30px; 
+    width: 600px;
+    margin-bottom: 30px;  
   }  
   .input {  
-    font-size: 16px;  
-    height: 44px;  
-    width: 100%; 
+    font-size: 30px;  
+    height: 80px;  
+    width: 600px;  
+    padding-left: 90px;  
+    padding-top: 15px;  
+    padding-bottom: 15px;  
     border-width:1px;  
     border-color: #48c9bf;  
-    border-radius:5px;  
-    outline: none;
-    text-indent:2.5em;
-  } 
+    border-radius:10px;  
+    outline: none;  
+  }  
   .input-img{  
     position: absolute;  
-    top:6px;  
-    left: 5px;  
-    width: 30px;  
-    height: 30px;  
+    top:10px;  
+    left: 15px;  
+    width: 60px;  
+    height: 60px;  
   }  
   .input-login{  
-    height: 44px;  
-    width: 100%;  
+    height: 80px;  
+    width: 600px;  
     background-color: #48c9bf;  
-    border-radius: 5px;
+    border-radius: 10px;  
+    margin-top: 40px;  
   }  
   .input-login-text{  
-    height: 44px;  
-    width: 100%;  
+    height: 80px;  
+    width: 600px;  
     text-align: center;  
-    line-height: 44px;  
+    line-height: 80px;  
     color: white;  
-    font-size: 16px;  
+    font-size: 35px;  
   }  
   .input-forget{  
     position: absolute;  
-    left: 0px;  
-    font-size: 16px;  
+    left: 20px;  
+    font-size: 30px;  
   }  
   .input-register{  
     position: absolute;  
-    right: 0px;  
-    font-size: 16px;  
+    right: 20px;  
+    font-size: 30px;  
   }
 </style>
