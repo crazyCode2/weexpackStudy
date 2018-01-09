@@ -21,6 +21,19 @@
           @wxcSearchbarInputOnBlur="wxcSearchbarInputOnBlur"></wxc-searchbar>
         <text class="value-text">{{value}}</text>
       </div>
+    <!-- 列表 -->
+    <!-- 引导页 -->
+    <wxc-cell
+      title="引导页"
+      :has-arrow="true"
+      @wxcCellClicked="goGuide"
+      :has-top-border="false"></wxc-cell>
+    <!-- splash页 -->
+    <wxc-cell
+      title="splash页"
+      :has-arrow="true"
+      @wxcCellClicked="goSplash"
+      :has-top-border="false"></wxc-cell>
     </scroller>
   </div>
 </template>
@@ -46,12 +59,13 @@
   // 弹窗
   const modal = weex.requireModule('modal');
   // 引入 UI组件
-  import { WxcMinibar, WxcSearchbar } from 'weex-ui';
+  import { WxcMinibar, WxcSearchbar, WxcCell } from 'weex-ui';
 
   export default {
     components: {
       WxcMinibar,
-      WxcSearchbar
+      WxcSearchbar,
+      WxcCell
     },
     data () {
       return {
@@ -64,26 +78,27 @@
       this.getData();
     },
     methods: {
+      // 取消按钮点击事件
       wxcSearchbarCancelClicked () {
-        // 取消按钮点击事件
-        modal.toast({ 'message': 'cancel.click', 'duration': 1 });
+        modal.toast({ 'message': '取消按钮点击事件', 'duration': 1 });
       },
+      // 监听输入内容
       wxcSearchbarInputOnInput (e) {
-        // 监听输入内容
         this.value = e.value;
       },
+      // 关闭按钮点击事件
       wxcSearchbarCloseClicked () {
-        // 关闭按钮点击事件
-        modal.toast({ 'message': 'close.click', 'duration': 1 });
+        modal.toast({ 'message': '关闭按钮点击事件', 'duration': 1 });
       },
+      // 输入框聚集焦点事件
       wxcSearchbarInputOnFocus () {
-        // 输入框聚集焦点事件
-        modal.toast({ 'message': 'onfocus', 'duration': 1 });
+        modal.toast({ 'message': '聚集焦点事件', 'duration': 1 });
       },
+      // 输入框失去焦点事件
       wxcSearchbarInputOnBlur () {
-        // 输入框失去焦点事件
-        modal.toast({ 'message': 'onbulr', 'duration': 1 });
+        modal.toast({ 'message': '失去焦点事件', 'duration': 1 });
       },
+      // 获取数据
       getData(){
         let params = {
           catid: this.catid,
@@ -92,10 +107,17 @@
         // 请求数据
         this.$api.get('webservice/Api/List?',params,function(data) {
           if(data.list.length > 1){
-            console.log('获取数据成功!');
+            modal.toast({ 'message': '获取数据成功!', 'duration': 1 });
           }
-          // console.log(JSON.stringify(data));
         })
+      },
+      // 跳转引导页
+      goGuide(){
+        this.$router.push({path:'/guide'});
+      },
+      // 跳转splash页
+      goSplash(){
+        this.$router.push({path:'/splash'});
       }
     }
   }

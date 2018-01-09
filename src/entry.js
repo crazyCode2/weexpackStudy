@@ -39,4 +39,4 @@ Vue.use(VueResource)
 new Vue(Vue.util.extend({ el: '#root', router, store }, App));
 
 // 默认跳转的页面
-router.push('/');
+router.push('/guide');

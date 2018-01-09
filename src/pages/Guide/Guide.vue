@@ -1,14 +1,16 @@
 <!-- 引导页 -->
 <template>
-  <div class="wrap"> 
+  <div class="wrap">
+    <!-- 轮播图 -->
     <slider class="slider" auto-play="true" interval="5000" >
       <div class="slider-pages" v-for="item in itemList">
         <image class="thumb" :src="item.pictureUrl" resize="stretch"></image>
       </div>
-      <indicator class="indicator"></indicator>
+      <!-- 指示器 style="width:720px;height:30px;" -->
+      <!-- <indicator class="indicator"></indicator> -->
     </slider>
-    <!-- 开始体验－Start -->
-    <text class='btn' @click="goNext">{{txt}}</text>
+    <!-- 开始体验 -->
+    <text class='btn' @click="goStart">{{txt}}</text>
   </div>
 </template>
 
@@ -19,38 +21,50 @@
     flex-direction: column;
     background-color: #2B2D2F;
   }
+  /*轮播图*/
   .slider {
-    margin: 0px;
     width: 750px;
     height: 1000px;
-    background-color: transparent;;
-    margin:0px auto;
+    background-color: transparent;
     align-items: center;
     justify-content: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: auto;
+    margin-right: auto;
   }
-  .thumb {
-    width: 720px;
-    height: 1280px;
-    margin:0px auto;
-    align-items: center;
-    justify-content: center;
-  }
+  /*轮播图 图片*/
   .slider-pages {
     flex-direction: row;
     width: 720px;
     height: 1000px;
-    margin:0px auto;
     align-items: center;
     justify-content: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: auto;
+    margin-right: auto;
   }
+  .thumb {
+    width: 720px;
+    height: 1280px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  /*轮播图 指示器*/
   .indicator {
     position: absolute;
     top: 970px;
     width: 720px;
     height: 30px;
-    itemColor: #dddddd;
-    itemSelectedColor: rgb(40, 96, 144);
+    item-color: #dddddd;
+    item-selected-color: rgb(40, 96, 144);
   }
+  /*开始体验 按钮*/
   .btn{
     width: 300px;
     height: 60px;
@@ -70,10 +84,7 @@
   export default {
     data() {
       return {
-        txt:"开始体验-DusanWeex",
-        intervalValue:"1000",
-        isShowIndicators:"true",
-        isAutoPlay:"true",
+        txt:"开始体验",
         itemList: [
           {title: 'A', pictureUrl: 'https://duqian291902259.github.io/dusan/oair/bg1.png'},
           {title: 'B', pictureUrl: 'https://duqian291902259.github.io/dusan/oair/bg2.png'},
@@ -81,10 +92,14 @@
         ]
       }
     },
+    created () {
+      // 隐藏tabbar
+      this.$store.dispatch('hideTabBar');
+    },
     methods: {
-      goNext() {
+      goStart() {
         // 页面跳转
-        console.log('开始页面跳转');
+        this.$router.push({path:'/splash'});
       }
     }
   }

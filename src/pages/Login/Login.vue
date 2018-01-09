@@ -4,11 +4,11 @@
     <div class="login">  
       <div class="input-wrapper">  
         <input v-model="userNumber" class="input" type="text" placeholder="账号" autofocus="true" value=""/> 
-        <image class="input-img" src="http://cdn-img.easyicon.net/png/11741/1174195.gif"></image>  
+        <image class="input-img" src="https://www.easyicon.net/api/resizeApi.php?id=1174195&size=64"></image>  
       </div>
       <div class="input-wrapper">  
         <input v-model="userPassword" class="input" type="password" placeholder="密码" value=""/>
-        <image class="input-img" src="http://cdn-img.easyicon.net/png/11741/1174192.gif"></image>  
+        <image class="input-img" src="https://www.easyicon.net/api/resizeApi.php?id=1174192&size=64"></image>  
       </div>  
       <div class="input-wrapper">  
         <div class="input-login" @click="login">  

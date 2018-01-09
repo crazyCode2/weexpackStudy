@@ -106,6 +106,36 @@
             class="txt"
             slot="title">视频</text>
         </wxc-cell>
+      <!-- 切换账号 -->
+      <wxc-cell
+        :has-arrow="true"
+        :cell-style="cellStyle"
+        :has-top-border="false"
+        @wxcCellClicked="switchAccount"
+        :auto-accessible="false">
+        <image
+          class="image"
+          slot="label"
+          src="http://ico.58pic.com/iconset02/naruto_vol_1/gif/39126.gif"></image>
+          <text
+            class="txt"
+            slot="title">切换账号</text>
+        </wxc-cell>
+      <!-- 退出系统 -->
+      <wxc-cell
+        :has-arrow="true"
+        :cell-style="cellStyle"
+        :has-top-border="false"
+        @wxcCellClicked="exitSystem"
+        :auto-accessible="false">
+        <image
+          class="image"
+          slot="label"
+          src="http://ico.58pic.com/iconset02/naruto_vol_1/gif/39126.gif"></image>
+          <text
+            class="txt"
+            slot="title">退出系统</text>
+        </wxc-cell>
     </wxc-popup>
   </div>
 </template>
@@ -136,6 +166,8 @@
 </style>
 
 <script>
+  // 弹窗
+  const modal = weex.requireModule('modal');
   // 头像左边文字
   import Title from '../../assets/_mods/title.vue';
   // 说明抬头
@@ -166,24 +198,41 @@
       }
     },
     methods: {
+      // 显示侧滑菜单
       minibarRightButtonClick(){
-        // 显示侧滑菜单
         this.isRightShow = true;
       },
+      // 隐藏侧滑菜单
       popupOverlayRightClick () {
-        // 隐藏侧滑菜单
         this.isRightShow = false;
       },
+      // 动漫
       cartoonClicked(){
-        // 动漫
-        this.$router.push({path:'/cartoon'});
+        modal.toast({
+          'message': '动漫',
+          'duration': 1
+        });
       },
+      // 音乐
       musicClicked(){
-        // 音乐
+        modal.toast({
+          'message': '音乐',
+          'duration': 1
+        });
+      },
+      // 视频
+      videoClicked(){
+        modal.toast({
+          'message': '视频',
+          'duration': 1
+        });
+      },
+      // 切换账号
+      switchAccount(){
         this.$router.push({path:'/login'});
       },
-      videoClicked(){
-        // 视频
+      // 退出系统
+      exitSystem(){
         this.$store.dispatch('setLogin',false);
       },
       errorPageClicked(){
